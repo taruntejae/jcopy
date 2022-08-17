@@ -1,12 +1,14 @@
 package com.jcopy.jcopy.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "JUSER")
+@Data
 public class User {
     @Id
     @Column(name = "ID_USER")
@@ -19,9 +21,9 @@ public class User {
     @JsonIgnore
     private List<Task> assignedTaskList;
 
-    @OneToMany(mappedBy = "createdByUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Task> createdTaskList;
+//    @OneToMany(mappedBy = "createdByUser", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<Task> createdTaskList;
 
     @Override
     public String toString() {
@@ -29,39 +31,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", assignedTaskList=" + assignedTaskList +
-                ", createdTaskList=" + createdTaskList +
+//                ", createdTaskList=" + createdTaskList +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public List<Task> getAssignedTaskList() {
-        return assignedTaskList;
-    }
-
-    public void setAssignedTaskList(List<Task> assignedTaskList) {
-        this.assignedTaskList = assignedTaskList;
-    }
-
-    public List<Task> getCreatedTaskList() {
-        return createdTaskList;
-    }
-
-    public void setCreatedTaskList(List<Task> createdTaskList) {
-        this.createdTaskList = createdTaskList;
     }
 }
